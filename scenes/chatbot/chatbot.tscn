@@ -1,0 +1,219 @@
+[gd_scene load_steps=14 format=3 uid="uid://4p56u86ymsq5"]
+
+[ext_resource type="Script" path="res://scenes/chatbot/chatbot.gd" id="1_4lprf"]
+[ext_resource type="Texture2D" uid="uid://6q7iw3o5hnn7" path="res://assets/chatbot/miku_faces/normal_face.svg" id="2_7wty3"]
+[ext_resource type="Script" path="res://scenes/chatbot/text_fields.gd" id="3_viguq"]
+[ext_resource type="Theme" uid="uid://61mg2djaqyfc" path="res://resources/themes/chatbox_text_fields.tres" id="3_xi50m"]
+
+[sub_resource type="Animation" id="Animation_20eq3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MikuFace:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MikuFace:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_yr6rm"]
+resource_name = "happy"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MikuFace:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5, 0.75, 1, 1.25, 1.5),
+"transitions": PackedFloat32Array(0.406126, 1.41421, 0.450625, 1.8025, 0.574349, 1.51572, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 30), Vector2(0, -30), Vector2(0, 25), Vector2(0, -25), Vector2(0, 15), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_b61b0"]
+resource_name = "normal"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MikuFace:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(0.378929, 2.54912, 0.225313, 2.54912, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 20), Vector2(0, 0), Vector2(0, -20), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_wck42"]
+resource_name = "sad"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MikuFace:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 3),
+"transitions": PackedFloat32Array(3.86374, 1.56917, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 100), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_d1ahi"]
+resource_name = "shocked"
+length = 1.75
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MikuFace:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75),
+"transitions": PackedFloat32Array(0.5, 1.8025, 0.554785, 1.56917, 0.659754, 1.7411, 0.594604, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-60, 0), Vector2(60, 0), Vector2(-30, 0), Vector2(30, 0), Vector2(-15, 0), Vector2(15, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MikuFace:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75),
+"transitions": PackedFloat32Array(1.86607, 1.46409, 1.8025, 1.62451, 1.68179, 1.46409, 1.56917, 1),
+"update": 0,
+"values": [0.0, -0.0872665, 0.0872665, -0.0436332, 0.0436332, -0.0261799, 0.0261799, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_usmok"]
+resource_name = "thinking"
+length = 2.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MikuFace:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 2.5),
+"transitions": PackedFloat32Array(0.812252, 1.41421, 1, 1),
+"update": 0,
+"values": [0.0, 0.174533, -0.174533, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vtp05"]
+_data = {
+"RESET": SubResource("Animation_20eq3"),
+"happy": SubResource("Animation_yr6rm"),
+"normal": SubResource("Animation_b61b0"),
+"sad": SubResource("Animation_wck42"),
+"shocked": SubResource("Animation_d1ahi"),
+"thinking": SubResource("Animation_usmok")
+}
+
+[sub_resource type="Animation" id="Animation_d4aqx"]
+resource_name = "chatbot_response_field_loading"
+length = 0.75
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ChatbotResponseField:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [".", "..", "..."]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vy2od"]
+_data = {
+"chatbot_response_field_loading": SubResource("Animation_d4aqx")
+}
+
+[node name="Chatbot" type="Node2D"]
+script = ExtResource("1_4lprf")
+
+[node name="MikuFace" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(390, 277)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("2_7wty3")
+
+[node name="MikuFaceAnimations" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vtp05")
+}
+
+[node name="UserPromptField" type="TextEdit" parent="."]
+offset_left = 163.0
+offset_top = 24.0
+offset_right = 604.0
+offset_bottom = 141.0
+auto_translate = false
+localize_numeral_system = false
+theme = ExtResource("3_xi50m")
+theme_override_colors/font_color = Color(0.121569, 0.298039, 0.34902, 1)
+theme_override_colors/font_selected_color = Color(0.87451, 0.180392, 0.501961, 1)
+theme_override_colors/font_placeholder_color = Color(0.501961, 0.796078, 0.745098, 1)
+theme_override_colors/selection_color = Color(0.733333, 0.882353, 0.858824, 1)
+theme_override_colors/caret_color = Color(0.313726, 0.282353, 0.4, 1)
+theme_override_constants/line_spacing = 2
+placeholder_text = "Go!!! Talk to Miku-chan!"
+wrap_mode = 1
+scroll_smooth = true
+script = ExtResource("3_viguq")
+
+[node name="ChatbotResponseField" type="TextEdit" parent="."]
+offset_left = 16.0
+offset_top = 413.0
+offset_right = 782.0
+offset_bottom = 584.0
+theme = ExtResource("3_xi50m")
+theme_override_colors/font_color = Color(0.121569, 0.298039, 0.34902, 1)
+theme_override_colors/font_selected_color = Color(0.87451, 0.180392, 0.501961, 1)
+theme_override_colors/font_readonly_color = Color(0.121569, 0.298039, 0.34902, 1)
+theme_override_colors/font_placeholder_color = Color(0.501961, 0.796078, 0.745098, 1)
+theme_override_colors/selection_color = Color(0.733333, 0.882353, 0.858824, 1)
+theme_override_colors/caret_color = Color(0.313726, 0.282353, 0.4, 1)
+theme_override_constants/line_spacing = 2
+text = "."
+placeholder_text = "Miku's response..."
+editable = false
+wrap_mode = 1
+scroll_smooth = true
+
+[node name="TextFieldsAnimations" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vy2od")
+}

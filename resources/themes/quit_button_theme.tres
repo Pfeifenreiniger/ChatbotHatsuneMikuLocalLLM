@@ -1,0 +1,11 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://bshdk67khb7eb"]
+
+[ext_resource type="StyleBox" uid="uid://by1ucx837wcgs" path="res://resources/themes/quit_button_style_box_flat.tres" id="1_4spu0"]
+[ext_resource type="FontFile" uid="uid://bk6mfi8u2srma" path="res://assets/fonts/LegacySansStd-Bold.otf" id="1_8yj5p"]
+
+[resource]
+default_font = ExtResource("1_8yj5p")
+default_font_size = 16
+Button/styles/hover = ExtResource("1_4spu0")
+Button/styles/normal = ExtResource("1_4spu0")
+Button/styles/pressed = ExtResource("1_4spu0")

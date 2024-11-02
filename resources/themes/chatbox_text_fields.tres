@@ -1,0 +1,17 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://61mg2djaqyfc"]
+
+[ext_resource type="StyleBox" uid="uid://dk1capilmegcp" path="res://resources/themes/chatbox_style_box_flat.tres" id="1_ldgih"]
+[ext_resource type="FontFile" uid="uid://bk6mfi8u2srma" path="res://assets/fonts/LegacySansStd-Bold.otf" id="1_qtw84"]
+[ext_resource type="StyleBox" uid="uid://b8ssdjui5c38m" path="res://resources/themes/chatbox_grabber.tres" id="2_nqljh"]
+[ext_resource type="StyleBox" uid="uid://ck471ujpqgrgu" path="res://resources/themes/chatbox_grabber_highlight.tres" id="3_tixm1"]
+[ext_resource type="StyleBox" uid="uid://dqwxv7s481o7g" path="res://resources/themes/chatbox_grabber_pressed.tres" id="4_l2jlo"]
+
+[resource]
+default_font = ExtResource("1_qtw84")
+default_font_size = 16
+TextEdit/styles/focus = ExtResource("1_ldgih")
+TextEdit/styles/normal = ExtResource("1_ldgih")
+TextEdit/styles/read_only = ExtResource("1_ldgih")
+VScrollBar/styles/grabber = ExtResource("2_nqljh")
+VScrollBar/styles/grabber_highlight = ExtResource("3_tixm1")
+VScrollBar/styles/grabber_pressed = ExtResource("4_l2jlo")
