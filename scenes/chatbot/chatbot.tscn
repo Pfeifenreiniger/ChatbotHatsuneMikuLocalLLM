@@ -175,6 +175,8 @@ libraries = {
 "": SubResource("AnimationLibrary_vtp05")
 }
 
+[node name="MikuSounds" type="AudioStreamPlayer" parent="."]
+
 [node name="UserPromptField" type="TextEdit" parent="."]
 offset_left = 163.0
 offset_top = 24.0

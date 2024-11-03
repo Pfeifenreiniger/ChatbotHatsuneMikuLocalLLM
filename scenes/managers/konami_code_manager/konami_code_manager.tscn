@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5tlmwbk7at42"]
+
+[ext_resource type="Script" path="res://scenes/managers/konami_code_manager/konami_code_manager.gd" id="1_0fpr4"]
+
+[node name="KonamiCodeManager" type="Node"]
+script = ExtResource("1_0fpr4")

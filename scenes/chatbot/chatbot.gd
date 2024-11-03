@@ -6,6 +6,7 @@ class_name Chatbot
 
 @onready var miku_face: Sprite2D = %MikuFace as Sprite2D
 @onready var miku_face_animations: AnimationPlayer = $MikuFaceAnimations as AnimationPlayer
+@onready var miku_sounds: AudioStreamPlayer = $MikuSounds as AudioStreamPlayer
 @onready var user_prompt_field: TextField = $UserPromptField as TextField
 @onready var chatbot_response_field: TextEdit = $ChatbotResponseField as TextEdit
 @onready var text_fields_animations: AnimationPlayer = $TextFieldsAnimations as AnimationPlayer
@@ -27,6 +28,14 @@ var MIKU_FACE_IMAGES:Dictionary = {
 	'thinking' : load("res://assets/chatbot/miku_faces/thinking_face.svg")
 }
 
+var MIKU_SOUNDS:Dictionary = {
+	'happy' : load("res://assets/sounds/miku/happy.mp3"),
+	'normal' : load("res://assets/sounds/miku/normal.mp3"),
+	'sad' : load("res://assets/sounds/miku/sad.mp3"),
+	'shocked' : load("res://assets/sounds/miku/shocked.mp3"),
+	'thinking' : load("res://assets/sounds/miku/thinking.mp3")
+}
+
 @export_enum('normal', 'happy', 'sad', 'shocked', 'thinking') var miku_face_type:String = 'normal':
 	get:
 		return miku_face_type
@@ -39,6 +48,11 @@ var MIKU_FACE_IMAGES:Dictionary = {
 		if miku_face_animations != null:
 			miku_face_animations.stop()
 			miku_face_animations.play(value)
+		if miku_sounds != null:
+			if miku_sounds.playing:
+				miku_sounds.stop()
+			miku_sounds.stream = MIKU_SOUNDS.get(value)
+			miku_sounds.play()
 
 var chatbot_response_display_animation_tween:Tween
 
@@ -91,7 +105,7 @@ func _on_llm_api_request_manager_got_llm_response(response:String) -> void:
 	var scrollbar:VScrollBar = chatbot_response_field.get_v_scroll_bar()
 	
 	chatbot_response_display_animation_tween.tween_method(
-		display_response_in_parts_animation.bind(response), 0.0, float(response.length()) - 1, response.length() / 20
+		display_response_in_parts_animation.bind(response), 0.0, float(response.length()), response.length() / 20
 	)
 	
 	await chatbot_response_display_animation_tween.finished

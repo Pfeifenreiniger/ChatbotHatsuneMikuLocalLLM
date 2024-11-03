@@ -4,11 +4,13 @@ extends Node2D
 #-----------SCENE REFERENCES-----------#
 
 @onready var chatbot: Chatbot = $Chatbot as Chatbot
+@onready var konami_code_manager: KonamiCodeManager = $KonamiCodeManager as KonamiCodeManager
 
 
 #-----------NODE REFERENCES-----------#
 
 @onready var quit_button: Button = $QuitButton as Button
+@onready var quit_button_sound: AudioStreamPlayer = $QuitButtonSound as AudioStreamPlayer
 @onready var texture_rect: TextureRect = $TextureRect as TextureRect
 
 
@@ -27,6 +29,7 @@ func _ready() -> void:
 	quit_button.pressed.connect(_on_quit_button_pressed)
 	texture_rect.mouse_entered.connect(_on_texture_rect_mouse_entered)
 	texture_rect.mouse_exited.connect(_on_texture_rect_mouse_exited)
+	konami_code_manager.konami_code_activated.connect(_on_konami_code_manager_konami_code_activated)
 
 
 func _process(_delta: float) -> void:
@@ -57,6 +60,8 @@ func _move_window() -> void:
 #-----------METHODS: CONNECTED SIGNALS-----------#
 
 func _on_quit_button_pressed() -> void:
+	quit_button_sound.play()
+	await quit_button_sound.finished
 	get_tree().quit()
 
 
@@ -66,3 +71,12 @@ func _on_texture_rect_mouse_entered() -> void:
 
 func _on_texture_rect_mouse_exited() -> void:
 	hover_over_window = false
+
+
+func _on_konami_code_manager_konami_code_activated() -> void:
+	var easter_egg_sound:AudioStreamPlayer = AudioStreamPlayer.new()
+	add_child(easter_egg_sound)
+	easter_egg_sound.stream = load("res://assets/sounds/miku/my-name-is-hatsune-miku!-made-with-Voicemod.mp3")
+	easter_egg_sound.play()
+	await easter_egg_sound.finished
+	easter_egg_sound.queue_free()

@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://bcb7uuwuivd1g"]
+[gd_scene load_steps=7 format=3 uid="uid://bcb7uuwuivd1g"]
 
 [ext_resource type="PackedScene" uid="uid://4p56u86ymsq5" path="res://scenes/chatbot/chatbot.tscn" id="1_8asos"]
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_t6io0"]
 [ext_resource type="Theme" uid="uid://bshdk67khb7eb" path="res://resources/themes/quit_button_theme.tres" id="2_4ttgk"]
 [ext_resource type="FontFile" uid="uid://bk6mfi8u2srma" path="res://assets/fonts/LegacySansStd-Bold.otf" id="2_rfutb"]
+[ext_resource type="AudioStream" uid="uid://d2kgvro42sd5b" path="res://assets/sounds/miku/miku-thank-you-for-playing.mp3" id="5_c1v6v"]
+[ext_resource type="PackedScene" uid="uid://c5tlmwbk7at42" path="res://scenes/managers/konami_code_manager/konami_code_manager.tscn" id="6_rfetu"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_t6io0")
@@ -22,8 +24,13 @@ theme_override_colors/font_hover_color = Color(0.87451, 0.180392, 0.501961, 1)
 theme_override_fonts/font = ExtResource("2_rfutb")
 text = "X"
 
+[node name="QuitButtonSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_c1v6v")
+
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = 158.0
 offset_top = 166.0
 offset_right = 608.0
 offset_bottom = 394.0
+
+[node name="KonamiCodeManager" parent="." instance=ExtResource("6_rfetu")]
