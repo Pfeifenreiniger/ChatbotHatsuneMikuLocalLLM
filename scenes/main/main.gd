@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 
 #-----------SCENE REFERENCES-----------#
@@ -56,11 +56,12 @@ func _move_window() -> void:
 	)
 
 
-
 #-----------METHODS: CONNECTED SIGNALS-----------#
 
 func _on_quit_button_pressed() -> void:
 	quit_button_sound.play()
+	var quit_tween:Tween = create_tween()
+	quit_tween.tween_property($".", "scale", Vector2(.01, .01), 1.6)
 	await quit_button_sound.finished
 	get_tree().quit()
 
@@ -78,5 +79,15 @@ func _on_konami_code_manager_konami_code_activated() -> void:
 	add_child(easter_egg_sound)
 	easter_egg_sound.stream = load("res://assets/sounds/miku/my-name-is-hatsune-miku!-made-with-Voicemod.mp3")
 	easter_egg_sound.play()
+	scale = Vector2(.6, .6)
+	
+	var rotation_tween:Tween = create_tween()
+	rotation_tween.set_loops(0)
+	rotation_tween.tween_property($".", "rotation_degrees", 360, .5).from(0)
+	
 	await easter_egg_sound.finished
+	
+	rotation_tween.kill()
+	scale = Vector2(1, 1)
+	rotation_degrees = 0
 	easter_egg_sound.queue_free()

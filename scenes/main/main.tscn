@@ -7,12 +7,16 @@
 [ext_resource type="AudioStream" uid="uid://d2kgvro42sd5b" path="res://assets/sounds/miku/miku-thank-you-for-playing.mp3" id="5_c1v6v"]
 [ext_resource type="PackedScene" uid="uid://c5tlmwbk7at42" path="res://scenes/managers/konami_code_manager/konami_code_manager.tscn" id="6_rfetu"]
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+pivot_offset = Vector2(400, 300)
 script = ExtResource("1_t6io0")
 
 [node name="Chatbot" parent="." instance=ExtResource("1_8asos")]
 
 [node name="QuitButton" type="Button" parent="."]
+layout_mode = 0
 offset_left = 782.0
 offset_top = 4.0
 offset_right = 800.0
@@ -28,6 +32,7 @@ text = "X"
 stream = ExtResource("5_c1v6v")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
 offset_left = 158.0
 offset_top = 166.0
 offset_right = 608.0
