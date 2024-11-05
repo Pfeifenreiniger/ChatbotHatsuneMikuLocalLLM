@@ -10,6 +10,10 @@
 [node name="Main" type="Control"]
 layout_mode = 3
 anchors_preset = 0
+offset_left = 208.0
+offset_top = 203.0
+offset_right = 208.0
+offset_bottom = 203.0
 pivot_offset = Vector2(400, 300)
 script = ExtResource("1_t6io0")
 

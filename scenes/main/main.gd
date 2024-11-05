@@ -38,7 +38,7 @@ func _process(_delta: float) -> void:
 
 func _init_window_position() -> void:
 	DisplayServer.window_set_position(
-		MONITOR_SIZE / 2
+		(MONITOR_SIZE / 2) - (WINDOW_SIZE / 2)
 	)
 
 
@@ -49,7 +49,7 @@ func _move_window() -> void:
 	
 	var mouse_position:Vector2i = Vector2i(Globals.global_mouse_position.x, Globals.global_mouse_position.y) + DisplayServer.window_get_position()
 	
-	var mouse_position_offset:Vector2i = Vector2i(WINDOW_SIZE.x / 2, WINDOW_SIZE.y / 2)
+	var mouse_position_offset:Vector2i = Vector2i(WINDOW_SIZE.x / 2, WINDOW_SIZE.y / 2.2)
 	
 	DisplayServer.window_set_position(
 		mouse_position - mouse_position_offset
@@ -79,7 +79,6 @@ func _on_konami_code_manager_konami_code_activated() -> void:
 	add_child(easter_egg_sound)
 	easter_egg_sound.stream = load("res://assets/sounds/miku/my-name-is-hatsune-miku!-made-with-Voicemod.mp3")
 	easter_egg_sound.play()
-	scale = Vector2(.6, .6)
 	
 	var rotation_tween:Tween = create_tween()
 	rotation_tween.set_loops(0)
@@ -88,6 +87,5 @@ func _on_konami_code_manager_konami_code_activated() -> void:
 	await easter_egg_sound.finished
 	
 	rotation_tween.kill()
-	scale = Vector2(1, 1)
 	rotation_degrees = 0
 	easter_egg_sound.queue_free()
